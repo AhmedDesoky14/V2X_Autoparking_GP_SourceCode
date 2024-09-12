@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "garageName": "Alex Garage",
+        "cost": 30,
+        "location": "Oilibya, Al Sadat Street, 15th of May, 11927",
+        "locationLatitude": "29.844611",
+        "locationLongitude": "31.376165",
+        "distance": 1300,
+        "numSlots": 5,
+        "time": 16,
+        "rate": 4.5
+    },
+    {
+        "id": 2,
+        "garageName": "Ziad Garage",
+        "cost": 30,
+        "location": "Oilibya, Al Sadat Street, 15th of May, 11927",
+        "locationLatitude": "222",
+        "locationLongitude": "333",
+        "distance": 1300,
+        "numSlots": 5,
+        "time": 15,
+        "rate": 4.5
+    },
+    {
+        "id": 3,
+        "garageName": "Mohamed Garage",
+        "cost": 30,
+        "location": "Oilibya, Al Sadat Street, 15th of May, 11927",
+        "locationLatitude": "29.844611",
+        "locationLongitude": "31.376165",
+        "distance": 1300,
+        "numSlots": 5,
+        "time": 12,
+        "rate": 4.5
+    },
+    {
+        "id": 4,
+        "garageName": "Khaled Garage",
+        "cost": 30,
+        "location": "Oilibya, Al Sadat Street, 15th of May, 11927",
+        "locationLatitude": "29.844611",
+        "locationLongitude": "31.376165",
+        "distance": 1300,
+        "numSlots": 5,
+        "time": 12,
+        "rate": 4.5
+    },
+    {
+        "id": 5,
+        "garageName": "George Garage",
+        "cost": 30,
+        "location": "Oilibya, Al Sadat Street, 15th of May, 11927",
+        "locationLatitude": "29.844611",
+        "locationLongitude": "31.376165",
+        "distance": 1880,
+        "numSlots": 5,
+        "time": 12,
+        "rate": 4.5
+    }
+]
