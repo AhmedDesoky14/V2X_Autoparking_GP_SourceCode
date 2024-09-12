@@ -38,7 +38,6 @@
 #include "Inf2_PublicKey.h"
 /*Configure Private Key der_Ptr and der_len and device ID*/
 RSA_Private_Key_Struct My_Private_Key;
-//My_Private_Key.Private_Key_der_Ptr = Infrastucture2_PrivKey_der;
 
 /*Configure Keys der_Ptr and der_len and device ID*/
 
@@ -78,7 +77,7 @@ byte aes_key2[16] = {
 };
 /*Configure Keys pointers and device ID*/
 
-AES_Key_Struct AES_Keys[AES_SYSTEM_DEVICES] = {{aes_key0,103},{aes_key1,159}};
+AES_Key_Struct AES_Keys[AES_SYSTEM_DEVICES] = {aes_key0,212};
 
 #endif
 

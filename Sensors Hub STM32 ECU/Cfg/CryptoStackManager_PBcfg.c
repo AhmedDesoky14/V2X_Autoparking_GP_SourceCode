@@ -31,9 +31,9 @@
  ***********************************************************************************************************************/
 #if(RSA_Algorithm == 1)
 /*Define or Include RSA Keys here*/
-/* ALL PUBLIC KEYS  */
-#include "Inf2_PrivKey.h"
 ///* MY PRIVATE KEY */
+#include "Inf2_PrivKey.h"
+/* ALL PUBLIC KEYS  */
 #include "Valeo_Vehicle_PublicKey.h"
 #include "Inf2_PublicKey.h"
 /*Configure Private Key der_Ptr and der_len and device ID*/
