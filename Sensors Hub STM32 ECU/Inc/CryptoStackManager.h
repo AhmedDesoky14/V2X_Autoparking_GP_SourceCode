@@ -76,7 +76,7 @@
    9- run "sudo make install" shell command
    10-run "sudo ldconfig" to configure the install dynamic libraries of WolfSSL
    11-For building link with wolfssl, add option -lwolfssl
-
+   *To Enable Direct AES functionality, modify "wolfSSL.I-CUBE-wolfSSL_conf" file the remake the library files*
  * Now you're ready to use the library on Linux
  * *********************************************************************************************************************/
 #ifndef INC_CRYPTOSTACKMANAGER_H_
