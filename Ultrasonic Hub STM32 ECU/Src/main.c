@@ -4,6 +4,14 @@
  *  Authors: Ahmed Desoky
  *           Dina Hamed
  *	Date: 21/7/2024
+ *	*********************************************************************************************************************
+ *	Application and OS Layer for Ultrasonic Hub ECU
+ *  Applications:
+ *              - Reset the microcontroller whenever a hang occurs
+ *              - Control buzzer, when distance read by ultrasonics is small the buzzer is ON, else buzzer is OFF
+ *              - Continuously get ultrasonics readings and whenever distance is less than 35cm a Hault message
+ *                is send to the Control ECU, *Further work is to send readings to Main RaspberryPi ECU
+ *              - If any error occured to any connected device, its reported to the Main Raspberry ECU via CAN Bus
  ***********************************************************************************************************************/
 /**
   ******************************************************************************
