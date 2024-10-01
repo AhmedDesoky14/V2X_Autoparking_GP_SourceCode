@@ -1,103 +1,94 @@
-/* remove this comment after use.
-   Versions are set only for header files and configurations files.
-   Version Check is only done in header files, as implemented in this file.
-*/
 /************************************************************************************************************************
- * 	Module:
- * 	File Name:
- *  Authors:
- *	Date:
+ * 	Module: V2I Client
+ * 	File Name: v2i_client.h
+ *  Authors: Ahmed Desoky
+ *	Date: 5/5/2024
  *	*********************************************************************************************************************
- *	Description:
- *
- *
+ *	Description: V2I Client for Raspberry Pi 4 dedicated to V2I communications with V2I servers utilizing WiFi
  ***********************************************************************************************************************/
-#ifndef HEADER_FILE_H
-#define HEADER_FILE_H
+#ifndef V2I_CLIENT_H
+#define V2I_CLIENT_H
+/************************************************************************************************************************
+ *                     							      SECURED CAN STACK OPTION
+ ***********************************************************************************************************************/
+#define SECURE_COMM_V2I   1
 /************************************************************************************************************************
  *                     							             INCLUDES
  ***********************************************************************************************************************/
-
-/************************************************************************************************************************
- *                     							             INCLUDES
-***********************************************************************************************************************/
-//#define COM_SECURED /*Comment this line if you don't want to include and use communications security*/
-using namespace std;
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <sched.h>
 #include "tcp_client.h"
 #include "wifi_manager.h"
-
-#ifdef COM_SECURED
+#if(SECURE_COMM_V2I == 1)
 #include "SecOC.h"
 #endif
+#include <thread>
 /************************************************************************************************************************
  *                     				          VENDOR & SOFTWARE VERSION CONTROL
-***********************************************************************************************************************/
+ ***********************************************************************************************************************/
 #define VENDOR_ID	(2024U)
-/*Current Version 0.0.0*/
-#define MODULE_NAME_SW_MAJOR_VERSION           (0U)
-#define MODULE_NAME_SW_MINOR_VERSION           (0U)
-#define MODULE_NAME_SW_PATCH_VERSION           (0U)
-/*Software Version checking between Module Configuration file and Header file*/
-#if ((MODULE_NAME_SW_MAJOR_VERSION != MODULE_NAME_CFG_SW_MAJOR_VERSION)\
- ||  (MODULE_NAME_SW_MINOR_VERSION != MODULE_NAME_CFG_SW_MINOR_VERSION)\
- ||  (MODULE_NAME_SW_PATCH_VERSION != MODULE_NAME_CFG_SW_PATCH_VERSION))
-  #error "The Software version of (MODULE NAME) does not match the configurations expected version"
-#endif
-/*remove this comment after use, if there is no Post Build Configurations file, remove the following check statement*/
-/*Software Version checking of Dependent Module - MODULE_NAMEX(Another Module) - Version 0.0.0*/
-#if ((MODULE_NAMEX_SW_MAJOR_VERSION != (0U))\
- ||  (MODULE_NAMEX_SW_MINOR_VERSION != (0U))\
- ||  (MODULE_NAMEX_SW_PATCH_VERSION != (0U)))
-  #error "The Software version of (MODULE_NAMEX) Module does not match the expected version"
-#endif
-/*Software Version checking of Dependent Module - MODULE_NAMEX(Another Module) - Version 0.0.0*/
-#if ((MODULE_NAMEX_SW_MAJOR_VERSION != (0U))\
- ||  (MODULE_NAMEX_SW_MINOR_VERSION != (0U))\
- ||  (MODULE_NAMEX_SW_PATCH_VERSION != (0U)))
-  #error "The Software version of (MODULE_NAMEX) Module does not match the expected version"
-#endif
+/*Current Version 1.0.0*/
+#define V2I_CLIENT_SW_MAJOR_VERSION           (1U)
+#define V2I_CLIENT_SW_MINOR_VERSION           (0U)
+#define V2I_CLIENT_SW_PATCH_VERSION           (0U)
 /************************************************************************************************************************
  *                     							      CONSTANT DEFINITIONS
  ***********************************************************************************************************************/
-#define START_CONNECTION                    (char*)("V2I:CONNECT:")
-#define END_CONNECTION                      (char*)("V2I:DISCONNECT")
-#define SECURITY_PARAMETER                  (char*)("+Security:")
+#define START_CONNECTION                    std::string("V2I:CONNECT:")
+#define END_CONNECTION                      std::string("V2I:DISCONNECT")
+#define SECURITY_PARAMETER                  (unsigned char*)("+Security:")
 #define SECURITY_PARAMETER_SIZE             10
-#define MAX_SECURED_MESSAGE_SIZE            512
+#define MAX_SECURED_MESSAGE_SIZE            510
 #define V2I_RX_MAX_NO_BUFFER                5
-#define V2I_COMMUNICATIONS_PRIORITY         31
 /************************************************************************************************************************
- *                     						          MODULE DATA TYPES
+ *                     						            MODULE CLASS
+ ***********************************************************************************************************************/
+class v2i_client
+{
+private:
+/************************************************************************************************************************
+ *                    							         Private Variables
+ ***********************************************************************************************************************/
+tcp_client My_TCP_Connection;
+unsigned int My_Vehicle_ID;
+unsigned int Current_Infrastructure_ID;
+unsigned char Running_Thread;
+std::thread *Rx_Thread = NULL;
+unsigned char V2I_Rx_Buffer[V2I_RX_MAX_NO_BUFFER][MAX_SECURED_MESSAGE_SIZE] = {0};
+unsigned int V2I_Rx_Buffer_Sizes[V2I_RX_MAX_NO_BUFFER] = {0};
+unsigned char Rx_Index = 0;
+unsigned char V2I_Read_Index = 0;
+public:
+/************************************************************************************************************************
+ *                     				          Private Functions Prototypes
+ ***********************************************************************************************************************/
+void v2i_client::V2I_Receive_Thread(void);
+/************************************************************************************************************************
+ *                     						              CONSTRUCTOR
+ ***********************************************************************************************************************/
+v2i_client(unsigned int Vehicle_ID)
+{
+    My_Vehicle_ID = Vehicle_ID;
+}
+/************************************************************************************************************************
+ *                     						          PUBLIC DATA TYPES
  ***********************************************************************************************************************/
 typedef enum
 {
   V2I_OK,V2I_NOT_OK,TCP_ERROR,WiFi_ERROR,SECURITY_ERROR
 }V2I_CLIENT_STATUS;
 /************************************************************************************************************************
- *                     						                MACROS
- ***********************************************************************************************************************/
-
-/************************************************************************************************************************
- *                     				             Functions Prototypes
+ *                     				          Public Functions Prototypes
  ***********************************************************************************************************************/
 /*Functions Description in source file*/
-V2I_CLIENT_STATUS V2I_Search(string Infrastructure);
-V2I_CLIENT_STATUS V2I_Connect(string Infrastructure,string Password,string IP_Address,\
-            unsigned short Port,unsigned int Infrastructure_ID,unsigned int Vehicle_ID);
+V2I_CLIENT_STATUS V2I_Search(std::string Infrastructure);
+V2I_CLIENT_STATUS V2I_Connect(std::string Infrastructure,std::string Password,\
+            std::string IP_Address,unsigned short Port,unsigned int Infrastructure_ID);
 V2I_CLIENT_STATUS V2I_Disconnect(void);
-V2I_CLIENT_STATUS V2I_Send_Message(string Message/*,SecurityLevel Security_Level*/);
-V2I_CLIENT_STATUS V2I_Read_Message(string &Message);
+V2I_CLIENT_STATUS V2I_Send_Message(std::string Message,SecurityLevel Security_Level);
+V2I_CLIENT_STATUS V2I_Read_Message(std::string &Message);
 V2I_CLIENT_STATUS V2I_Check_Inbox(void);
-V2I_CLIENT_STATUS V2I_Check_Connection(void); 
-
+V2I_CLIENT_STATUS V2I_Check_Connection(void)
+};
 /************************************************************************************************************************
- *                    							   External Variables
+ *                     						             CLASS END
  ***********************************************************************************************************************/
-
-
-#endif /*HEADER_FILE_H*/
+#endif /*V2I_CLIENT_H*/
