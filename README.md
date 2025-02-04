@@ -9,7 +9,7 @@ Combined with Hybrid A* path planning algorithm, EKF (Extended Kalman Filter) st
 To implement a real auto parking scenario. Visualized using interactive GUI powered by Qt Quick running on custom Linux based OS. 
 Vehicle components are distributed on group of ECUs all connected via secured CAN network. **Agile methodology applied in this project.**
 
-## ======================================================================================================================================================== ##
+## =================================================================================================================================================== ##
 
 ## Project Highlights:
 
@@ -22,7 +22,7 @@ We developed advanced algorithms for sensor fusion, path planning, and vehicle c
     - Omar Adel
     - Omar Tolba
 
-## ======================================================================================================================================================== ##
+## =================================================================================================================================================== ##
 
 2- Intuitive Graphical User Interface:
 We designed a user-friendly graphical interface using Qt QML running on custom Linux based OS, offering drivers real-time assistance and information throughout driving and the parking process.
@@ -33,7 +33,7 @@ We designed a user-friendly graphical interface using Qt QML running on custom L
     - Ziad Emad
     - Esraa Fawzy
 
-## ======================================================================================================================================================== ##
+## =================================================================================================================================================== ##
 
 3- MQTT-Network for Infrastructures
 We utilized MQTT protocol exploiting its low-latency and real-time properties for data exchange between infrastructures.
@@ -62,7 +62,7 @@ This is a Client application for MQTT communications between many IoT nodes repr
 **Contributors:**
     - Ahmed Desoky
 
-## ======================================================================================================================================================== ##
+## =================================================================================================================================================== ##
 
 4- Security Enhancements
 Comprehensive security measures were incorporated including "AES 128","RSA 2048" encryption algorithms and "SHA2-256" hash algorithm. Securing data transmitted between vehicles and infrastructures for V2X communications and communications between vehicle OnBoard ECUs.
@@ -86,7 +86,7 @@ Comprehensive security measures were incorporated including "AES 128","RSA 2048"
     - Dina Hamed
     - Ahmed Desoky
 
-## ======================================================================================================================================================== ##
+## =================================================================================================================================================== ##
 
 5- V2X Communications
 The project utilized V2X technology to establish seamless communication between vehicles and infrastructures. this was conducted using TCP/IP protocol and WiFi local network created by infrastructure's ESP8266 as Access point and vehicle's Raspberry Pi WiFi as Station.
@@ -132,7 +132,7 @@ Second part, **V2I Client - Vehicle** is installed and run on Raspbian, a Linux 
     - Ahmed Desoky
     - Omar Tolba
  
- ## ======================================================================================================================================================== ##
+ ## =================================================================================================================================================== ##
 
 
 6- Vehicle OnBoard Communications using Secured-CAN Network
