@@ -9,6 +9,8 @@ Combined with Hybrid A* path planning algorithm, EKF (Extended Kalman Filter) st
 To implement a real auto parking scenario. Visualized using interactive GUI powered by Qt Quick running on custom Linux based OS. 
 Vehicle components are distributed on group of ECUs all connected via secured CAN network. **Agile methodology applied in this project.**
 
+## ======================================================================================================================================================== ##
+
 ## Project Highlights:
 
 1- Autonomous Parking System:
@@ -25,7 +27,7 @@ We developed advanced algorithms for sensor fusion, path planning, and vehicle c
 2- Intuitive Graphical User Interface:
 We designed a user-friendly graphical interface using Qt QML running on custom Linux based OS, offering drivers real-time assistance and information throughout driving and the parking process.
 
-- Work and results are in "Main RaspberryPi ECU" folder
+- Work and results are in another repository, link: https://github.com/AhmedDesoky14/V2X_Autoparking_GP_GUI.git
 
 **Contributors:**
     - Ziad Emad
